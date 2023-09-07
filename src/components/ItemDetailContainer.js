@@ -1,10 +1,10 @@
 import React from 'react';
 import ItemDetail from './ItemDetail';
 
-const ItemDetailContainer = () => {
+const ItemDetailContainer = ({ addToCart }) => {
   return (
     <div>
-      <ItemDetail />
+      <ItemDetail addToCart={addToCart} />
     </div>
   );
 }

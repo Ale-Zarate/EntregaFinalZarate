@@ -1,23 +1,39 @@
 import React from 'react';
-import products from '../data';
 import './ItemList.css';
 import product1Image from '../images/product1.jpg';
 
-const ItemList = () => {
+const ItemList = ({ addToCart }) => {
+  const products = [
+    {
+      id: 1,
+      name: 'Planta Morel',
+      description: 'Macetero incluido',
+      price: 29.99,
+      image: product1Image,
+    },
+    // Puedes agregar más productos aquí
+  ];
+
   return (
     <div className="item-list">
-      <h2 className="item-list-title">Product Catalog</h2>
+      <h2 className="item-list-title">Articulos Destacados</h2>
       <ul className="item-list-ul">
-        <li className="item">
-          <img className="item-image" src={product1Image} alt="Product 1" />
-          <div className="item-info">
-            <h3 className="item-name">Planta 1</h3>
-            <p className="item-description">Macetero incluido</p>
-            <span className="item-price">$99.99</span>
-            <button className="item-add-button">Add to Cart</button>
-          </div>
-        </li>
-        {/* Repite una estructura similar para otros productos */}
+        {products.map((product) => (
+          <li key={product.id} className="item">
+            <img className="item-image" src={product.image} alt={product.name} />
+            <div className="item-info">
+              <h3 className="item-name">{product.name}</h3>
+              <p className="item-description">{product.description}</p>
+              <span className="item-price">${product.price}</span>
+              <button
+                className="item-add-button"
+                onClick={() => addToCart(product)}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );

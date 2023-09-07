@@ -1,29 +1,42 @@
 import React from 'react';
-import './ItemDetail.css';
-import product1Image from '../images/product1.jpg';
+import './ItemList.css';
+import product2Image from '../images/product2.jpg';
 
-const ItemDetail = () => {
+const ItemList = ({ addToCart }) => {
+  const products = [
+    {
+      id: 1,
+      name: 'Bonsai de Invierno',
+      description: 'Macetero incluido',
+      price: 59.99,
+      image: product2Image,
+    },
+    // Puedes agregar más productos aquí
+  ];
+
   return (
-    <div className="item-detail">
-      <h2 className="item-detail-title">Product Detail</h2>
-      <div className="item-detail-content">
-        <img className="item-detail-image" src={product1Image} alt="Product 1" />
-        <div className="item-detail-info">
-          <h3 className="item-detail-name">Planta 1</h3>
-          <p className="item-detail-description">Planta y macetero incluido</p>
-          <span className="item-detail-price">$99.99</span>
-          <div className="quantity-selector">
-            <button className="quantity-decrease">-</button>
-            <span className="quantity">1</span>
-            <button className="quantity-increase">+</button>
-          </div>
-          <button className="add-to-cart-button">Add to Cart</button>
-        </div>
-      </div>
+    <div className="item-list">
+      <h2 className="item-list-title">Temporada Septiembre</h2>
+      <ul className="item-list-ul">
+        {products.map((product) => (
+          <li key={product.id} className="item">
+            <img className="item-image" src={product.image} alt={product.name} />
+            <div className="item-info">
+              <h3 className="item-name">{product.name}</h3>
+              <p className="item-description">{product.description}</p>
+              <span className="item-price">${product.price}</span>
+              <button
+                className="item-add-button"
+                onClick={() => addToCart(product)}
+              >
+                Add to Cart
+              </button>
+            </div>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
 
-export default ItemDetail;
-
-
+export default ItemList;
